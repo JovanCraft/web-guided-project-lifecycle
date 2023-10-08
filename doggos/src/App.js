@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import SearchForm from './SearchForm'
 
 const fetchDoggos = breed => {
     return axios.get(`https://dog.ceo/api/breed/${breed}/images`)
@@ -42,6 +43,7 @@ class App extends React.Component{
         return (
             <>
                 <h1>My App</h1>
+                <SearchForm searchDoggos={this.searchDoggos}/>
                 {this.state.doggos.map((doggo, i) => <img width='200' src={doggo} key={i} alt={doggo}></img>)}
             </>
         )
