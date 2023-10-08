@@ -13,8 +13,16 @@ class App extends React.Component{
         super();
         this.state = {
             doggos: [],
-            breed: ''
+            breed: 'husky'
         }
+        fetchDoggos('husky')
+    }
+
+    componentDidMount() {
+        console.log('component DID mount!')
+        fetchDoggos(this.state.breed).then(res => {
+            this.setState({ doggos: res.data.message})
+        })
     }
 
     render() {
@@ -22,6 +30,7 @@ class App extends React.Component{
         return (
             <>
                 <h1>My App</h1>
+                {this.state.doggos.map((doggo, i) => <img width='200' src={doggo} key={i} alt={doggo}></img>)}
             </>
         )
     }
