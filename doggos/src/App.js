@@ -25,6 +25,18 @@ class App extends React.Component{
         })
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        console.log('component DID update!')
+        console.log(prevState)
+    }
+
+    searchDoggos = doggoName => {
+        console.log('search doggos')
+        fetchDoggos(doggoName).then(res => {
+            this.setState({ doggos: res.data.message, breed: doggoName})
+        })
+    }
+
     render() {
         console.log('render function ran')
         return (
